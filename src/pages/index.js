@@ -6,11 +6,19 @@ export default function Index() {
   return (
     <div className="text-white bg-black">
       <NextSeo
-        title="Home: Yazz | Generate Code"
+        title="Yazz | Generate Code"
         description="Aku gabut, jadi bikin ini."
-        canonical="yazz-generate-code.vercel.app"
+        canonical="https://yazz-generate-code.vercel.app"
         openGraph={{
-          url: "yazz-generate-code.vercel.app",
+          url: "https://yazz-generate-code.vercel.app",
+          images: [
+            {
+              url: "https://pm1.narvii.com/5764/ae366b7bb64bb7b7fda66e4c027472e0a45fc75b_hq.jpg",
+              width: 800,
+              height: 600,
+              alt: "Mang Eak Cik!",
+            },
+          ],
         }}
       />
       <Head>
