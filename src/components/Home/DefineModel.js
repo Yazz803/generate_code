@@ -36,7 +36,7 @@ db.${modelCamelCase} = require('./${modelCamelCase}.js')(sequelize, Sequelize)
   return (
     <div className="fontf-code">
       <div className="flex justify-between">
-        <p>app.js (Define Route)</p>
+        <p>index.js (Define Model)</p>
         <Button
           className="flex justify-end items-center mb-4 text-white"
           type="dashed"
