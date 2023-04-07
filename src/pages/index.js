@@ -7,10 +7,10 @@ export default function Index() {
     <div className="text-white bg-black">
       <NextSeo
         title="Home: Yazz | Generate Code"
-        description="Welcome to nine4 homepage."
-        canonical="https://nine4-3.vercel.app/"
+        description="Aku gabut, jadi bikin ini."
+        canonical="yazz-generate-code.vercel.app"
         openGraph={{
-          url: "https://nine4-3.vercel.app/",
+          url: "yazz-generate-code.vercel.app",
         }}
       />
       <Head>
