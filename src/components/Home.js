@@ -4,6 +4,8 @@ import { useState } from "react";
 import Model from "./Home/Model";
 import Routes from "./Home/Routes";
 import Controller from "./Home/Controller";
+import DefineRoute from "./Home/DefineRoute";
+import DefineModel from "./Home/DefineModel";
 
 export default function Home() {
   const [resultFormInput, setResultFormInput] = useState({});
@@ -31,6 +33,14 @@ export default function Home() {
               Jangan lupa define Model dan route nya di file index.js (Model)
               dan app.js(Route)
             </p>
+
+            <div className="border rounded p-5 mb-8">
+              <DefineModel data={resultFormInput} />
+            </div>
+
+            <div className="border rounded p-5 mb-8">
+              <DefineRoute data={resultFormInput} />
+            </div>
 
             <div className="border rounded p-5 mb-8">
               <Model data={resultFormInput} />

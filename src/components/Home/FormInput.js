@@ -8,7 +8,8 @@ export default function FormInput({ setResultFormInput }) {
 
   const onSubmit = (values) => {
     setResultFormInput(values);
-    console.log(values);
+    if (values.columns.length === 0) return;
+    message.success("Generate Code Successfully!");
   };
 
   return (
