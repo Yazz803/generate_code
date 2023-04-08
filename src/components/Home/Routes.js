@@ -23,11 +23,19 @@ module.exports = (app) => {
   const Controller = require("../controllers/${modelCamelCase}Controller.js");
   const router = require("express").Router();
 
-  router.get("/", checkToken, Controller.getAll);
+  ${
+    data.read
+      ? `router.get("/", checkToken, Controller.getAll);
   router.get("/get", checkToken, Controller.getOne);
-  router.post("/store", checkToken, Controller.store);
-  router.delete("/destroy", checkToken, Controller.destroy);
-  router.post("/update", checkToken, Controller.update);
+  `
+      : ""
+  }${data.create ? `router.post("/store", checkToken, Controller.store);` : ""}
+  ${data.update ? `router.post("/update", checkToken, Controller.update);` : ""}
+  ${
+    data.delete
+      ? `router.delete("/destroy", checkToken, Controller.destroy);`
+      : ""
+  }
 
   app.use("/api/${data.model_name.split("_").join("-")}", router);
 };

@@ -18,7 +18,7 @@ export default function Model({ data }) {
 
   useEffect(() => {
     let resultCode = `module.exports = (sequelize, Sequelize) => {
-  const ${uppercaseFL(data.model_name, 1)} = sequelize.define("${
+  const Table = sequelize.define("${
       data.model_name
     }", {${data.columns
       .map((d) => {
@@ -88,7 +88,7 @@ export default function Model({ data }) {
       })
       .join("")}
   });
-  return ${uppercaseFL(data.model_name, 1)};
+  return Table;
 };
     `;
     setCode(resultCode);
