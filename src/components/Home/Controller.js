@@ -25,6 +25,7 @@ ${
     ? `exports.getAll = async (req, res) => {
   try {
     let data = await Model.findAll();
+
     if (data) {
       return res.json({
         success: true,
@@ -67,18 +68,18 @@ exports.getOne = async (req, res) => {
 ${
   data.create
     ? `exports.store = async (req, res) => {
-  let data = {
-    ${data.columns
-      .map((d) => {
-        if (d.column_name !== "id") {
-          return `${d.column_name}: req.body.${d.column_name},`;
-        }
-      })
-      .join("\n\t")}
+  let data = {${data.columns
+    .map((d) => {
+      if (d.column_name !== "id") {
+        return `${d.column_name}: req.body.${d.column_name},`;
+      }
+    })
+    .join("\n\t\t")}
   }
 
   try {
     let data = await Model.create(data);
+
     if (data) {
       return res.json({
         success: true,
@@ -105,11 +106,12 @@ ${
       .map((d) => {
         return `${d.column_name}: req.body.${d.column_name},`;
       })
-      .join("\n\t")}
+      .join("\n\t\t")}
   }
 
   try {
-    let data = await Model.update(data, { where: { data.id } });
+    let data = await Model.update(data, { where: { id: data.id } });
+
     if (data) {
       return res.json({
         success: true,
@@ -132,6 +134,7 @@ ${
   data.delete
     ? `exports.destroy = async (req, res) => {
   let { id } = req.query;
+  
   try {
     let data = await Model.destroy({
       where: {
