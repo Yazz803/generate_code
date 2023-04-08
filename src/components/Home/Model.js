@@ -13,8 +13,7 @@ export default function Model({ data }) {
   const textAreaRef = useRef(null);
 
   useEffect(() => {
-    let resultCode = `
-module.exports = (sequelize, Sequelize) => {
+    let resultCode = `module.exports = (sequelize, Sequelize) => {
   const ${uppercaseFL(data.model_name.split("_"), 1).join(
     ""
   )} = sequelize.define("${data.model_name}", {
@@ -71,12 +70,12 @@ module.exports = (sequelize, Sequelize) => {
         let primaryKey = "";
         let allowNull = "";
         if (d.pk) {
-          primaryKey = d.pk ? "\n\t\t\tprimaryKey: true," : "";
-          autoIncrement = d.pk ? "\n\t\t\tautoIncrement: true," : "";
+          primaryKey = d.pk ? "\n\t\tprimaryKey: true," : "";
+          autoIncrement = d.pk ? "\n\t\tautoIncrement: true," : "";
         }
 
         if (d.not_null) {
-          allowNull = "\n\t\t\tallowNull: false,";
+          allowNull = "\n\t\tallowNull: false,";
         }
 
         return `
@@ -124,7 +123,7 @@ module.exports = (sequelize, Sequelize) => {
         onValueChange={(code) => setCode(code)}
         highlight={(code) => highlight(code, languages.js)}
         padding={10}
-        className="text-sm border border-dashed bg-gray-950 rounded"
+        className="text-sm border border-dashed bg-code-editor rounded"
       />
     </div>
   );

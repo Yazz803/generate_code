@@ -13,11 +13,7 @@ export default function DefineModel({ data }) {
 
   useEffect(() => {
     let modelCamelCase = uppercaseFL(data.model_name.split("_"), 1).join("");
-    let resultCode = `
-...
-db.${modelCamelCase} = require('./${modelCamelCase}.js')(sequelize, Sequelize)
-...
-    `;
+    let resultCode = `db.${modelCamelCase} = require('./${modelCamelCase}.js')(sequelize, Sequelize)`;
     setCode(resultCode);
   }, [data]);
 
@@ -51,7 +47,7 @@ db.${modelCamelCase} = require('./${modelCamelCase}.js')(sequelize, Sequelize)
         onValueChange={(code) => setCode(code)}
         highlight={(code) => highlight(code, languages.js)}
         padding={10}
-        className="text-sm border border-dashed bg-gray-950 rounded"
+        className="text-sm border border-dashed bg-code-editor rounded"
       />
     </div>
   );

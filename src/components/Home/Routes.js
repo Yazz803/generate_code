@@ -13,8 +13,7 @@ export default function Routes({ data }) {
 
   useEffect(() => {
     let modelCamelCase = uppercaseFL(data.model_name.split("_"), 1).join("");
-    let resultCode = `
-const checkToken = require("../helpers/checkToken");
+    let resultCode = `const checkToken = require("../helpers/checkToken");
 
 module.exports = (app) => {
   const Controller = require("../controllers/${modelCamelCase}Controller.js");
@@ -62,7 +61,7 @@ module.exports = (app) => {
         onValueChange={(code) => setCode(code)}
         highlight={(code) => highlight(code, languages.js)}
         padding={10}
-        className="text-sm border border-dashed bg-gray-950 rounded"
+        className="text-sm border border-dashed bg-code-editor rounded"
       />
     </div>
   );

@@ -5,7 +5,7 @@ export default function Header() {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
 
   return (
-    <header class="bg-black w-full clearNav z-50">
+    <header class="bg-gray-950 w-full clearNav z-50">
       <div class="max-w-5xl mx-auto flex flex-wrap p-5 flex-col md:flex-row">
         <div className="flex flex-row items-center justify-between p-3 md:p-1">
           <Link

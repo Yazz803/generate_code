@@ -13,11 +13,7 @@ export default function DefineRoute({ data }) {
 
   useEffect(() => {
     let modelCamelCase = uppercaseFL(data.model_name.split("_"), 1).join("");
-    let resultCode = `
-...
-require("./routes/${modelCamelCase}")(app)
-...
-    `;
+    let resultCode = `require("./routes/${modelCamelCase}")(app)`;
     setCode(resultCode);
   }, [data]);
 
@@ -51,7 +47,7 @@ require("./routes/${modelCamelCase}")(app)
         onValueChange={(code) => setCode(code)}
         highlight={(code) => highlight(code, languages.js)}
         padding={10}
-        className="text-sm border border-dashed bg-gray-950 rounded"
+        className="text-sm border border-dashed bg-code-editor rounded"
       />
     </div>
   );

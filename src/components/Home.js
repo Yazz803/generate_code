@@ -24,7 +24,10 @@ export default function Home() {
         </h3>
 
         <div className="border rounded p-5 mb-10">
-          <FormInput setResultFormInput={setResultFormInput} />
+          <FormInput
+            setResultFormInput={setResultFormInput}
+            resultFormInput={resultFormInput}
+          />
         </div>
 
         {resultFormInput.columns && (

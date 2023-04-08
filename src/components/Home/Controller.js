@@ -13,11 +13,10 @@ export default function Controller({ data }) {
 
   useEffect(() => {
     let modelCamelCase = uppercaseFL(data.model_name.split("_"), 1).join("");
-    let resultCode = `
-const tbl = require("../models");
+    let resultCode = `const tbl = require("../models");
 const Model = tbl.${modelCamelCase};
 
-exports.getAll = async (req, res) => {
+${data.read ? `exports.getAll = async (req, res) => {
   try {
     let data = await Model.findAll();
     if (data) {
@@ -56,8 +55,8 @@ exports.getOne = async (req, res) => {
     });
   }
 };
-
-exports.store = async (req, res) => {
+` : ""}
+${data.create ? `exports.store = async (req, res) => {
   let data = {
     ${data.columns
       .map((d) => {
@@ -85,8 +84,8 @@ exports.store = async (req, res) => {
     });
   }
 };
-
-exports.update = async (req, res) => {
+` : ""}
+${data.update ? `exports.update = async (req, res) => {
   let data = {
     ${data.columns
       .map((d) => {
@@ -112,8 +111,8 @@ exports.update = async (req, res) => {
     });
   }
 };
-
-exports.destroy = async (req, res) => {
+`: ""}
+${data.delete ? `exports.destroy = async (req, res) => {
   let { id } = req.query;
   try {
     let data = await Model.destroy({
@@ -135,7 +134,7 @@ exports.destroy = async (req, res) => {
     });
   }
 };
-
+` : ""}
     `;
     setCode(resultCode);
   }, [data]);
@@ -173,7 +172,7 @@ exports.destroy = async (req, res) => {
         onValueChange={(code) => setCode(code)}
         highlight={(code) => highlight(code, languages.js)}
         padding={10}
-        className="text-sm border border-dashed bg-gray-950 rounded"
+        className="text-sm border border-dashed bg-code-editor rounded"
       />
     </div>
   );

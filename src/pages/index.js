@@ -4,7 +4,7 @@ import { NextSeo } from "next-seo";
 
 export default function Index() {
   return (
-    <div className="text-white bg-black">
+    <div className="text-white bg-gray-950">
       <NextSeo
         title="Yazz | Generate Code"
         description="Aku gabut, jadi bikin ini."
