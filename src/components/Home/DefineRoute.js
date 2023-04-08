@@ -6,28 +6,16 @@ import "prismjs/components/prism-javascript";
 import "prismjs/components/prism-haml";
 import { Button, message } from "antd";
 import { CopyOutlined } from "@ant-design/icons";
-import { uppercaseFL } from "yazz/utils/helpers";
+import { copyToClipboard, uppercaseFL } from "yazz/utils/helpers";
 
 export default function DefineRoute({ data }) {
   const [code, setCode] = useState(``);
 
   useEffect(() => {
-    let modelCamelCase = uppercaseFL(data.model_name.split("_"), 1).join("");
+    let modelCamelCase = uppercaseFL(data.model_name, 1);
     let resultCode = `require("./routes/${modelCamelCase}")(app)`;
     setCode(resultCode);
   }, [data]);
-
-  const copyToClipboard = () => {
-    // Copy the content of the Editor component to the clipboard
-    navigator.clipboard.writeText(code).then(
-      () => {
-        message.success("Code copied to clipboard");
-      },
-      () => {
-        message.error("Failed to copy code to clipboard");
-      }
-    );
-  };
 
   return (
     <div className="fontf-code">
@@ -36,7 +24,7 @@ export default function DefineRoute({ data }) {
         <Button
           className="flex justify-end items-center mb-4 text-white"
           type="dashed"
-          onClick={copyToClipboard}
+          onClick={() => copyToClipboard(code)}
           icon={<CopyOutlined />}
         >
           Copy Code
