@@ -6,7 +6,11 @@ import "prismjs/components/prism-javascript";
 import "prismjs/components/prism-haml";
 import { Button, message } from "antd";
 import { CopyOutlined, DownloadOutlined } from "@ant-design/icons";
-import { copyToClipboard, uppercaseFL } from "yazz/utils/helpers";
+import {
+  copyToClipboard,
+  uppercaseFL,
+  handleDonwloadFile,
+} from "yazz/utils/helpers";
 
 export default function Controller({ data }) {
   const [code, setCode] = useState(``);
