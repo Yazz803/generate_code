@@ -20,52 +20,51 @@ export default function Model({ data }) {
     let resultCode = `module.exports = (sequelize, Sequelize) => {
   const ${uppercaseFL(data.model_name, 1)} = sequelize.define("${
       data.model_name
-    }", {
-    ${data.columns
+    }", {${data.columns
       .map((d) => {
         let data_type;
         switch (d.data_type) {
           case "character varying":
-            data_type = "Sequelize.STRING";
+            data_type = "Sequelize.STRING,";
             break;
           case "character varying[]":
-            data_type = "Sequelize.ARRAY(Sequelize.STRING)";
+            data_type = "Sequelize.ARRAY(Sequelize.STRING),";
             break;
           case "text":
-            data_type = "Sequelize.TEXT";
+            data_type = "Sequelize.TEXT,";
             break;
           case "text[]":
-            data_type = "Sequelize.ARRAY(Sequelize.TEXT)";
+            data_type = "Sequelize.ARRAY(Sequelize.TEXT),";
             break;
           case "date":
-            data_type = "Sequelize.DATE";
+            data_type = "Sequelize.DATE,";
             break;
           case "date[]":
-            data_type = "Sequelize.ARRAY(Sequelize.DATE)";
+            data_type = "Sequelize.ARRAY(Sequelize.DATE),";
             break;
           case "integer":
-            data_type = "Sequelize.INTEGER";
+            data_type = "Sequelize.INTEGER,";
             break;
           case "integer[]":
-            data_type = "Sequelize.ARRAY(Sequelize.INTEGER)";
+            data_type = "Sequelize.ARRAY(Sequelize.INTEGER),";
             break;
           case "bigint":
-            data_type = "Sequelize.BIGINT";
+            data_type = "Sequelize.BIGINT,";
             break;
           case "bigint[]":
-            data_type = "Sequelize.ARRAY(Sequelize.BIGINT)";
+            data_type = "Sequelize.ARRAY(Sequelize.BIGINT),";
             break;
           case "boolean":
-            data_type = "Sequelize.BOOLEAN";
+            data_type = "Sequelize.BOOLEAN,";
             break;
           case "boolean[]":
-            data_type = "Sequelize.ARRAY(Sequelize.BOOLEAN)";
+            data_type = "Sequelize.ARRAY(Sequelize.BOOLEAN),";
             break;
           case "double precision":
-            data_type = "Sequelize.DOUBLE";
+            data_type = "Sequelize.DOUBLE,";
             break;
           case "double precision[]":
-            data_type = "Sequelize.ARRAY(Sequelize.DOUBLE)";
+            data_type = "Sequelize.ARRAY(Sequelize.DOUBLE),";
             break;
           default:
             break;
@@ -85,8 +84,7 @@ export default function Model({ data }) {
         return `
       ${d.column_name}: {
         ${"type: " + data_type + primaryKey + autoIncrement + allowNull}
-      },
-      `;
+      },`;
       })
       .join("")}
   });
