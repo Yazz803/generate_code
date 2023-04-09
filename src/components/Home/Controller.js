@@ -171,7 +171,10 @@ ${
             className="flex justify-end items-center mb-4 text-white"
             type="dashed"
             onClick={() =>
-              handleDonwloadFile(code, uppercaseFL(data.model_name, 1))
+              handleDonwloadFile(
+                code,
+                uppercaseFL(data.model_name, 1) + "Controller"
+              )
             }
             icon={<DownloadOutlined />}
           >
