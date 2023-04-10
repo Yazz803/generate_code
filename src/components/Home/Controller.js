@@ -68,7 +68,7 @@ exports.getOne = async (req, res) => {
 ${
   data.create
     ? `exports.store = async (req, res) => {
-  let data = {${data.columns
+  let data${uppercaseFL(data.model_name, 0)} = {${data.columns
     .map((d) => {
       if (d.column_name !== "id") {
         return `${d.column_name}: req.body.${d.column_name},`;
@@ -78,7 +78,7 @@ ${
   }
 
   try {
-    let data = await Model.create(data);
+    let data = await Model.create(data${uppercaseFL(data.model_name, 0)});
 
     if (data) {
       return res.json({
@@ -101,7 +101,7 @@ ${
 ${
   data.update
     ? `exports.update = async (req, res) => {
-  let data = {
+  let data${uppercaseFL(data.model_name, 0)} = {
     ${data.columns
       .map((d) => {
         return `${d.column_name}: req.body.${d.column_name},`;
@@ -110,7 +110,7 @@ ${
   }
 
   try {
-    let data = await Model.update(data, { where: { id: data.id } });
+    let data = await Model.update(data, { where: { id: data${uppercaseFL(data.model_name, 0)}.id } });
 
     if (data) {
       return res.json({
