@@ -87,6 +87,9 @@ export default function Model({ data }) {
       },`;
       })
       .join("")}
+  },
+  {
+    freezeTableName: true,
   });
   return Table;
 };
