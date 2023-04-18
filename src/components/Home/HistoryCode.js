@@ -17,41 +17,43 @@ export default function HistoryCode(props) {
         <>
           <div className="overflow-scroll h-[150px]">
             {!_.isEmpty(historyCode) ? (
-              historyCode.map((d, key) => (
-                <div className="mb" key={key}>
-                  <button className="flex items-center justify-between gap-3">
-                    <DeleteOutlined
-                      className="text-red-600"
-                      onClick={() => {
-                        // delete history code from local storage
-                        let historyCode = JSON.parse(
-                          localStorage.getItem("historyCode")
-                        );
-                        historyCode.splice(key, 1);
-                        localStorage.setItem(
-                          "historyCode",
-                          JSON.stringify(historyCode)
-                        );
-                        getHistoryCode(
-                          JSON.parse(localStorage.getItem("historyCode"))
-                        );
-                        message.warning("History Code Deleted");
-                      }}
-                    />{" "}
-                    <p
-                      className="m-0"
-                      onClick={() => {
-                        props.setResultFormInput(d);
-                        props.setSingleHistory(d);
-                        message.success("History Code Loaded");
-                      }}
-                    >
-                      Model : {d.model_name}
-                    </p>
-                  </button>
-                  <br />
-                </div>
-              ))
+              historyCode
+                .map((d, key) => (
+                  <div className="mb" key={key}>
+                    <button className="flex items-center justify-between gap-3">
+                      <DeleteOutlined
+                        className="text-red-600"
+                        onClick={() => {
+                          // delete history code from local storage
+                          let historyCode = JSON.parse(
+                            localStorage.getItem("historyCode")
+                          );
+                          historyCode.splice(key, 1);
+                          localStorage.setItem(
+                            "historyCode",
+                            JSON.stringify(historyCode)
+                          );
+                          getHistoryCode(
+                            JSON.parse(localStorage.getItem("historyCode"))
+                          );
+                          message.warning("History Code Deleted");
+                        }}
+                      />{" "}
+                      <p
+                        className="m-0"
+                        onClick={() => {
+                          props.setResultFormInput(d);
+                          props.setSingleHistory(d);
+                          message.success("History Code Loaded");
+                        }}
+                      >
+                        Model : {d.model_name}
+                      </p>
+                    </button>
+                    <br />
+                  </div>
+                ))
+                .reverse()
             ) : (
               <p className="text-center">No History Code</p>
             )}

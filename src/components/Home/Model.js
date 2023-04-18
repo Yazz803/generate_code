@@ -18,9 +18,7 @@ export default function Model({ data }) {
 
   useEffect(() => {
     let resultCode = `module.exports = (sequelize, Sequelize) => {
-  const Table = sequelize.define("${
-      data.model_name
-    }", {${data.columns
+  const Table = sequelize.define("${data.model_name}", {${data.columns
       .map((d) => {
         let data_type;
         switch (d.data_type) {
@@ -72,6 +70,7 @@ export default function Model({ data }) {
         let autoIncrement = "";
         let primaryKey = "";
         let allowNull = "";
+        let defaultValue = "";
         if (d.pk) {
           primaryKey = d.pk ? "\n\t\tprimaryKey: true," : "";
           autoIncrement = d.pk ? "\n\t\tautoIncrement: true," : "";
@@ -81,9 +80,22 @@ export default function Model({ data }) {
           allowNull = "\n\t\tallowNull: false,";
         }
 
+        if (d.defaultValue) {
+          defaultValue = `\n\t\tdefaultValue: "${d.defaultValue}",`;
+          if (d.defaultValue === "false") {
+            defaultValue = `\n\t\tdefaultValue: false,`;
+          }
+          if (d.defaultValue === "true") {
+            defaultValue = `\n\t\tdefaultValue: true,`;
+          }
+          if (d.defaultValue.match(/^[0-9]+$/)) {
+            defaultValue = `\n\t\tdefaultValue: ${d.defaultValue},`;
+          }
+        }
+
         return `
       ${d.column_name}: {
-        ${"type: " + data_type + primaryKey + autoIncrement + allowNull}
+        ${"type: " + data_type + primaryKey + autoIncrement + allowNull + defaultValue}
       },`;
       })
       .join("")}

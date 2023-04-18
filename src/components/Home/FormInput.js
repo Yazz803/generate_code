@@ -4,7 +4,7 @@ import {
   PlusOutlined,
   MinusCircleOutlined,
   HistoryOutlined,
-  ArrowRightOutlined
+  ArrowRightOutlined,
 } from "@ant-design/icons";
 import { optionDataTypes } from "./DataType";
 import HistoryCode from "./HistoryCode";
@@ -113,18 +113,21 @@ export default function FormInput({ resultFormInput, setResultFormInput }) {
               </div>
 
               <div className="flex mb-0 w-full gap-5 align-baseline">
-                <Form.Item className="w-[35%] text-white">
+                <Form.Item className="w-[32%] text-white">
                   <p>Name</p>
                 </Form.Item>
-                <Form.Item className="w-[35%] text-white">
+                <Form.Item className="w-[32%] text-white">
                   <p>Data Type</p>
                 </Form.Item>
 
-                <Form.Item className="text-white">
+                <Form.Item className=" text-white">
                   <p>Not Null?</p>
                 </Form.Item>
-                <Form.Item className="text-white">
+                <Form.Item className=" text-white">
                   <p>Primary Key?</p>
+                </Form.Item>
+                <Form.Item className="w-[28%] text-white">
+                  <p>Default</p>
                 </Form.Item>
               </div>
 
@@ -219,6 +222,13 @@ export default function FormInput({ resultFormInput, setResultFormInput }) {
                       className="text-white mr-6 mt-5"
                     />
                   </Form.Item>
+                  <Form.Item
+                    {...restField}
+                    name={[name, "defaultValue"]}
+                    className="md:w-[25%] m-0"
+                  >
+                    <Input className="costum-ui-input" autoComplete="off" />
+                  </Form.Item>
                   <MinusCircleOutlined
                     className="text-red-600 text-2xl"
                     onClick={() => remove(name)}
@@ -229,7 +239,9 @@ export default function FormInput({ resultFormInput, setResultFormInput }) {
           )}
         </Form.List>
         <div className="md:flex justify-between mt-16">
-            <p className="text-xl">Set Controller <ArrowRightOutlined /></p>
+          <p className="text-xl">
+            Set Controller <ArrowRightOutlined />
+          </p>
           <div className="flex">
             <Form.Item label="Create" name="create" valuePropName="checked">
               <Switch
