@@ -110,7 +110,7 @@ ${
   }
 
   try {
-    let data = await Model.update(data, { where: { id: data${uppercaseFL(data.model_name, 0)}.id } });
+    let data = await Model.update(data${uppercaseFL(data.model_name, 0)}, { where: { id: data${uppercaseFL(data.model_name, 0)}.id } });
 
     if (data) {
       return res.json({
