@@ -101,16 +101,19 @@ ${
 ${
   data.update
     ? `exports.update = async (req, res) => {
+  let id = req.body.id;
   let data${uppercaseFL(data.model_name, 0)} = {
     ${data.columns
       .map((d) => {
+        if(d.column_name !== "id") {
         return `${d.column_name}: req.body.${d.column_name},`;
+       }
       })
       .join("\n\t\t")}
   }
 
   try {
-    let data = await Model.update(data${uppercaseFL(data.model_name, 0)}, { where: { id: data${uppercaseFL(data.model_name, 0)}.id } });
+    let data = await Model.update(data${uppercaseFL(data.model_name, 0)}, { where: { id } });
 
     if (data) {
       return res.json({
