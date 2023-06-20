@@ -7,7 +7,7 @@ export default function Index() {
     <div className="text-white bg-gray-950">
       <NextSeo
         title="Yazz | Generate Code"
-        description="Aku gabut, jadi bikin ini."
+        description="Generate Code for Backend Node Js with Express Js and Sequelize ORM"
         canonical="https://yazz-generate-code.vercel.app"
         openGraph={{
           url: "https://yazz-generate-code.vercel.app",
@@ -16,7 +16,7 @@ export default function Index() {
               url: "https://pm1.narvii.com/5764/ae366b7bb64bb7b7fda66e4c027472e0a45fc75b_hq.jpg",
               width: 800,
               height: 600,
-              alt: "Mang Eak Cik!",
+              alt: "Project Iseng Generate Code",
             },
           ],
         }}

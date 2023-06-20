@@ -30,7 +30,7 @@ module.exports = (app) => {
   `
       : ""
   }${data.create ? `router.post("/store", checkToken, Controller.store);` : ""}
-  ${data.update ? `router.post("/update", checkToken, Controller.update);` : ""}
+  ${data.update ? `router.put("/update", checkToken, Controller.update);` : ""}
   ${
     data.delete
       ? `router.delete("/destroy", checkToken, Controller.destroy);`
